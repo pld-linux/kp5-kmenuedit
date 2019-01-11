@@ -1,15 +1,15 @@
-%define		kdeplasmaver	5.14.4
-%define		qtver		5.3.2
+%define		kdeplasmaver	5.14.5
+%define		qtver		5.9.0
 %define		kpname		kmenuedit
 
 Summary:	KDE menu editor
 Name:		kp5-%{kpname}
-Version:	5.14.4
+Version:	5.14.5
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	68bb90533998367a5a207132b91b0ac3
+# Source0-md5:	a3f0d9e18f2f407ea00c1a46d0a02155
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -28,7 +28,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		qt5dir		%{_libdir}/qt5
 
 %description
-Hot keys handling.
+KDE Plasma menu editor.
 
 %prep
 %setup -q -n %{kpname}-%{version}
