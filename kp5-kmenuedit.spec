@@ -1,15 +1,15 @@
-%define		kdeplasmaver	5.14.5
+%define		kdeplasmaver	5.15.3
 %define		qtver		5.9.0
 %define		kpname		kmenuedit
 
 Summary:	KDE menu editor
 Name:		kp5-%{kpname}
-Version:	5.14.5
+Version:	5.15.3
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	a3f0d9e18f2f407ea00c1a46d0a02155
+# Source0-md5:	50e642a3d5949443e161ea0d4eeaadea
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -21,6 +21,7 @@ BuildRequires:	kf5-kio-devel
 BuildRequires:	kf5-kxmlgui-devel
 BuildRequires:	kf5-sonnet-devel
 BuildRequires:	kp5-khotkeys-devel >= %{kdeplasmaver}
+BuildRequires:	ninja
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -36,16 +37,14 @@ KDE Plasma menu editor.
 %build
 install -d build
 cd build
-%cmake \
+%cmake -G Ninja \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
 	../
-%{__make}
+%ninja_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-%{__make} -C build/ install \
-        DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %find_lang %{kpname} --all-name --with-kde
 
@@ -60,3 +59,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/kmenuedit.png
 %{_datadir}/kmenuedit
 %{_datadir}/kxmlgui5/kmenuedit
+/etc/xdg/kmenuedit.categories
