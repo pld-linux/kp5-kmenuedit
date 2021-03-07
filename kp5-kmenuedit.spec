@@ -1,15 +1,15 @@
-%define		kdeplasmaver	5.15.3
+%define		kdeplasmaver	5.21.2
 %define		qtver		5.9.0
 %define		kpname		kmenuedit
 
 Summary:	KDE menu editor
 Name:		kp5-%{kpname}
-Version:	5.15.3
+Version:	5.21.2
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	50e642a3d5949443e161ea0d4eeaadea
+# Source0-md5:	63c54ba54ab1aa95813abccb9724cd14
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -39,6 +39,7 @@ install -d build
 cd build
 %cmake -G Ninja \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
+	-DHTML_INSTALL_DIR=%{_kdedocdir} \
 	../
 %ninja_build
 
@@ -54,9 +55,9 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{kpname}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kmenuedit
-%attr(755,root,root) %{_libdir}/libkdeinit5_kmenuedit.so
 %{_desktopdir}/org.kde.kmenuedit.desktop
 %{_iconsdir}/hicolor/*/apps/kmenuedit.png
 %{_datadir}/kmenuedit
 %{_datadir}/kxmlgui5/kmenuedit
-/etc/xdg/kmenuedit.categories
+%{_datadir}/qlogging-categories5/kmenuedit.categories
+%attr(755,root,root) %{_libdir}/kconf_update_bin/kmenuedit_globalaccel
