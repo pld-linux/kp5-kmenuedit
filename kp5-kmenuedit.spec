@@ -1,18 +1,18 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	5.24.5
+%define		kdeplasmaver	5.25.0
 %define		qtver		5.9.0
 %define		kpname		kmenuedit
 
 Summary:	KDE menu editor
 Name:		kp5-%{kpname}
-Version:	5.24.5
+Version:	5.25.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
-Source0:	http://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	ab0af707f54eb2c3272123613fff0546
+Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
+# Source0-md5:	2e185d9e8e1af8cd5f89e2f130cfc4ad
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
@@ -69,3 +69,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/kxmlgui5/kmenuedit
 %{_datadir}/qlogging-categories5/kmenuedit.categories
 %attr(755,root,root) %{_libdir}/kconf_update_bin/kmenuedit_globalaccel
+%{_datadir}/metainfo/org.kde.kmenuedit.appdata.xml
