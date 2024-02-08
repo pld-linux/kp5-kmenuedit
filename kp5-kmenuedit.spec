@@ -1,35 +1,33 @@
 #
 # Conditional build:
 %bcond_with	tests		# build with tests
-%define		kdeplasmaver	5.27.10
+%define		kdeplasmaver	5.93.0
 %define		qtver		5.15.2
 %define		kpname		kmenuedit
 
 Summary:	KDE menu editor
 Name:		kp5-%{kpname}
-Version:	5.27.10
-Release:	1
+Version:	5.93.0
+Release:	0.1
 License:	LGPL v2.1+
 Group:		X11/Libraries
-Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	e98c999e6ee7f9bbe775d4e512368420
+Source0:	https://download.kde.org/unstable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
+# Source0-md5:	e45cbc7b25dad79170a3ca8b44dc60c5
 URL:		http://www.kde.org/
-BuildRequires:	Qt5Core-devel >= %{qtver}
+BuildRequires:	Qt6Core-devel >= %{qtver}
 BuildRequires:	cmake >= 3.16.0
-BuildRequires:	kf5-kdbusaddons-devel
-BuildRequires:	kf5-kdelibs4support-devel
-BuildRequires:	kf5-ki18n-devel
-BuildRequires:	kf5-kiconthemes-devel
-BuildRequires:	kf5-kio-devel
-BuildRequires:	kf5-kxmlgui-devel
-BuildRequires:	kf5-sonnet-devel
-BuildRequires:	kp5-khotkeys-devel >= %{kdeplasmaver}
+BuildRequires:	kf6-kdbusaddons-devel
+BuildRequires:	kf6-ki18n-devel
+BuildRequires:	kf6-kiconthemes-devel
+BuildRequires:	kf6-kio-devel
+BuildRequires:	kf6-kxmlgui-devel
+BuildRequires:	kf6-sonnet-devel
 BuildRequires:	ninja
 BuildRequires:	rpmbuild(macros) >= 1.164
 BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		qt5dir		%{_libdir}/qt5
+%define		qt6dir		%{_libdir}/qt6
 
 %description
 KDE Plasma menu editor.
@@ -64,7 +62,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/org.kde.kmenuedit.desktop
 %{_iconsdir}/hicolor/*/apps/kmenuedit.png
 %{_datadir}/kmenuedit
-%{_datadir}/kxmlgui5/kmenuedit
-%{_datadir}/qlogging-categories5/kmenuedit.categories
-%attr(755,root,root) %{_libdir}/kconf_update_bin/kmenuedit_globalaccel
+%{_datadir}/qlogging-categories6/kmenuedit.categories
 %{_datadir}/metainfo/org.kde.kmenuedit.appdata.xml
